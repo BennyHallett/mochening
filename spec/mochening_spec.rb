@@ -32,4 +32,16 @@ describe Mochening do
       dbase[:table].where(a: 'a', b: 'b')
     end
   end
+
+  it "sets an expectations on the db that a set of values is selected from the dataset" do
+    db = double('database')
+    expect(db).to receive(:expects).with(:[]).and_return(db)
+    expect(db).to receive(:with).with(:table).and_return(db)
+    expect(db).to receive(:expects).with(:select).and_return(db)
+    expect(db).to receive(:with).with(:a, :b)
+
+    Mochening::Expect.from(db) do |dbase|
+      dbase[:table].select(:a, :b)
+    end
+  end
 end

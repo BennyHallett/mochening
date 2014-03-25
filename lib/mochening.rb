@@ -21,5 +21,10 @@ module Mochening
       @db.expects(:where).with(restriction)
       self
     end
+
+    def select(*columns)
+      @db.expects(:select).with(*columns)
+      self
+    end
   end
 end
