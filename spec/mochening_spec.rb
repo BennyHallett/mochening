@@ -12,8 +12,8 @@ describe Mochening do
 
   it "sets an expectation on the db that a dataset is created" do
     db = double('database')
-    expect(db).to receive(:expects) { :[] }
-    expect(db).to receive(:with) { :table }
+    expect(db).to receive(:expects).with(:[]).and_return(db)
+    expect(db).to receive(:with).with(:table)
 
     Mochening::Expect.from(db) do |dbase|
       dbase[:table]
