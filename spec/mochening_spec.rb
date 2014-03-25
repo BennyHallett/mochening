@@ -62,4 +62,20 @@ describe Mochening do
       dbase[:table].where(c: 'c').select(:a, :b).all return_value
     end
   end
+
+  it "returns first value of a selected data set" do
+    return_value = { a: 'aa', b: 'bb', c: 'c' }
+
+    db = double('database')
+    expect(db).to receive(:expects).with(:[]).and_return(db)
+    expect(db).to receive(:with).with(:table)
+    expect(db).to receive(:expects).with(:where).and_return(db)
+    expect(db).to receive(:with).with(c: 'c')
+    expect(db).to receive(:expects).with(:first).and_return(db)
+    expect(db).to receive(:returns).with(return_value)
+
+    Mochening::Expect.from(db) do |dbase|
+      dbase[:table].where(c: 'c').first return_value
+    end
+  end
 end

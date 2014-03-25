@@ -30,5 +30,9 @@ module Mochening
     def all(return_value)
       @db.expects(:all).returns(return_value)
     end
+
+    def first(return_value)
+      @db.expects(:first).returns(return_value)
+    end
   end
 end
