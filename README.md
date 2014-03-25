@@ -1,6 +1,7 @@
 # Mochening
 
 TODO: Write a gem description
+Mochening makes it easy to define expectations and stubs for your database when using Sequel
 
 ## Installation
 
@@ -18,7 +19,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: Write usage instructions herea
+
+`Mochening.expects(db).where({ x: 'abc' }).select(:y, [ { y: 123 }, { y: 456 } ])`
 
 ## Contributing
 
