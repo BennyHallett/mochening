@@ -44,4 +44,22 @@ describe Mochening do
       dbase[:table].select(:a, :b)
     end
   end
+
+  it "returns all values of a selected data set" do
+    return_value = [ { a: 'aa', b: 'bb' }, { a: '12', b: '34' } ]
+
+    db = double('database')
+    expect(db).to receive(:expects).with(:[]).and_return(db)
+    expect(db).to receive(:with).with(:table)
+    expect(db).to receive(:expects).with(:where).and_return(db)
+    expect(db).to receive(:with).with(c: 'c')
+    expect(db).to receive(:expects).with(:select).and_return(db)
+    expect(db).to receive(:with).with(:a, :b)
+    expect(db).to receive(:expects).with(:all).and_return(db)
+    expect(db).to receive(:returns).with(return_value)
+
+    Mochening::Expect.from(db) do |dbase|
+      dbase[:table].where(c: 'c').select(:a, :b).all return_value
+    end
+  end
 end

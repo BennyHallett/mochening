@@ -26,5 +26,9 @@ module Mochening
       @db.expects(:select).with(*columns)
       self
     end
+
+    def all(return_value)
+      @db.expects(:all).returns(return_value)
+    end
   end
 end
