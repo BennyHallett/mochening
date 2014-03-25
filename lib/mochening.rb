@@ -14,6 +14,12 @@ module Mochening
 
     def [](table)
       @db.expects(:[]).with(table)
+      self
+    end
+
+    def where(restriction)
+      @db.expects(:where).with(restriction)
+      self
     end
   end
 end

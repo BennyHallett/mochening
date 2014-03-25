@@ -19,4 +19,17 @@ describe Mochening do
       dbase[:table]
     end
   end
+
+  it "sets an expectation on the db that the dataset is restricted to a set of values" do
+    restriction = { a: 'a', b: 'b' }
+    db = double('database')
+    expect(db).to receive(:expects).with(:[]).and_return(db)
+    expect(db).to receive(:with).with(:table).and_return(db)
+    expect(db).to receive(:expects).with(:where).and_return(db)
+    expect(db).to receive(:with).with(restriction)
+
+    Mochening::Expect.from(db) do |dbase|
+      dbase[:table].where(a: 'a', b: 'b')
+    end
+  end
 end
