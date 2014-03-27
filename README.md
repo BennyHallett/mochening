@@ -23,11 +23,10 @@ Mochening allows you to easily use Mocha to mock the calls onto a Sequel databas
 
 The common pattern of usage is:
 
-`
-Mochening::Expect.from(mock_database) do |db|
-  db[:table].where(a: 'a', b: 'b').select(:c, :d).all [{ c: '1', d: '1' }, { c: '2', d: '2' }]
-end
-`
+    Mochening::Expect.from(mock_database) do |db|
+      db[:table].where(a: 'a', b: 'b').select(:c, :d).all [{ c: '1', d: '1' }, { c: '2', d: '2' }]
+    end
+
 
 In the above example, we're given a Mocha mock object, and inside the block we're easily able to apply expectations to the database in the same style that the Sequel database object is called.
 
@@ -42,6 +41,7 @@ At the moment, only a subset of Sequel functionality is able to be mocked. Only 
 * [:table_name]
 * where
 * select
+* insert
 * all
 * first
 
