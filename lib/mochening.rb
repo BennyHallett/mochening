@@ -27,6 +27,11 @@ module Mochening
       self
     end
 
+    def insert(value)
+      @db.expects(:insert).with(value)
+      self
+    end
+
     def all(return_value)
       @db.expects(:all).returns(return_value)
     end

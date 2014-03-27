@@ -45,6 +45,18 @@ describe Mochening do
     end
   end
 
+  it "sets an expectation on the db that a set of values in inserted into the table" do
+    db = double('database')
+    expect(db).to receive(:expects).with(:[]).and_return(db)
+    expect(db).to receive(:with).with(:table).and_return(db)
+    expect(db).to receive(:expects).with(:insert).and_return(db)
+    expect(db).to receive(:with).with({ a: 'a', b: 'b' })
+
+    Mochening::Expect.from(db) do |dbase|
+      dbase[:table].insert({ a: 'a', b: 'b' })
+    end 
+  end
+
   it "returns all values of a selected data set" do
     return_value = [ { a: 'aa', b: 'bb' }, { a: '12', b: '34' } ]
 
