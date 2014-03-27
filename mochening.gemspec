@@ -6,11 +6,11 @@ require 'mochening/version'
 Gem::Specification.new do |spec|
   spec.name          = "mochening"
   spec.version       = Mochening::VERSION
-  spec.authors       = ["BennyHallett"]
+  spec.authors       = ["Benny Hallett"]
   spec.email         = ["benny.hallett@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Mochening allows simpler mocking of Sequel database objects with Mocha.}
+  spec.summary       = %q{Mochening makes mocking Sequel database objects with Mocha simpler}
+  spec.homepage      = "http://github.com/bennyhallett/mochening"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
