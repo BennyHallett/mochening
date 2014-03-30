@@ -43,5 +43,9 @@ module Mochening
     def first(return_value)
       @db.expects(:first).returns(return_value)
     end
+
+    def count(return_value)
+      @db.expects(:count).returns(return_value)
+    end
   end
 end
