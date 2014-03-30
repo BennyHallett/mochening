@@ -57,6 +57,20 @@ describe Mochening do
     end 
   end
 
+  it "sets an expectation on the db that the run command will return a value" do
+    sql = 'select * from test'
+    results = [{ a: 'a' }, { a: 'b' }]
+
+    db = double('database')
+    expect(db).to receive(:expects).with(:run).and_return(db)
+    expect(db).to receive(:with).with(sql).and_return(db)
+    expect(db).to receive(:returns).with(results)
+
+    Mochening::Expect.from(db) do |dbase|
+      dbase.run sql, results
+    end
+  end
+
   it "returns all values of a selected data set" do
     return_value = [ { a: 'aa', b: 'bb' }, { a: '12', b: '34' } ]
 

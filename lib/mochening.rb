@@ -32,6 +32,10 @@ module Mochening
       self
     end
 
+    def run(query, return_value)
+      @db.expects(:run).with(query).returns(return_value)
+    end
+
     def all(return_value)
       @db.expects(:all).returns(return_value)
     end
